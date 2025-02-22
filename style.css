@@ -1,9 +1,18 @@
 button {
-    padding: 100px;
-    margin: 100px;
+    padding: 50px;
+    margin: 50px;
     background-color: red;
     border-radius: 50px;
     font-size: 50px;
+}
+
+body {
+    width: 100vw;
+    height: 100vw;
+    background-image: url('./Lobster.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 button:hover {
