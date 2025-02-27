@@ -1,25 +1,131 @@
-button {
-    padding: 50px;
-    margin: 50px;
-    background-color: red;
-    border-radius: 50px;
-    font-size: 50px;
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
 }
 
 body {
-    width: 100vw;
-    height: 100vw;
-    background-image: url('./Lobster.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: #f8f9fa;
 }
 
-button:hover {
-    background-color: rgb(231, 80, 80);
+.header {
+    display: flex;
+    width: 78%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    margin:0 auto;
+    padding: 0 52px;
+}
+
+.left-side-header {
+    display: flex;
+}
+
+.menu-button-div {
+    padding-top: 14px;
+}
+
+.menu-icon {
+    width: 20px;
+}
+
+.globe-div {
+    padding-left: 20px;
+}
+
+.globe {
+    width: 50px;
+}
+
+.wikipedia-text-div {
+    width: 120px;
+    padding-top: 9px;
+    padding-left: 10px;
+}
+
+.center-header {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+.eyeglass-div {
+    margin-left: 52px;
+    padding-left: 2px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-right: none;
+    border-left: 1px solid gray;
+}
+
+.eyeglass {
+    display: flex;
+    width: 33px;
+}
+
+.search-bar {
+    flex: 1;
+    height: 29px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-right: 1px solid gray;
+    border-left: none;
+    padding-right:215px;
+}
+
+.search-button-div {
+    border: 1px solid gray;
+    display: flex;
+    height: 29px;
+    border-left: none;
+}
+
+.right-side-header {
+    display: flex;
+}
+
+.account-div {
+    font-size: 14px;
+    padding-right: 12px;
+}
+
+.login-div {
+    font-size: 14px;
+    padding-right: 12px;
+}
+
+.donate-div {
+    font-size: 14px;
+    padding-right: 12px;
+}
+
+.incognito-div {
+    padding-right: 12px;
+}
+
+.donate-div,
+.login-div,
+.account-div {
+    color: rgb(51, 102, 204);
+    font-size: 14px;
+}
+
+.donate-div:hover,
+.login-div:hover,
+.account-div:hover {
+    text-decoration: underline;
+    text-decoration-color: rgb(51, 102, 204);
     cursor: pointer;
 }
 
-button:active {
-    box-shadow: 0px 0px 20px black;
+.main {
+    padding: 0 52px;
 }
+
+/*
+.header,
+.main {
+    border: 1px solid black;
+}
+*/
