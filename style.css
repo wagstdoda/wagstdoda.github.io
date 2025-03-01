@@ -125,16 +125,13 @@ body {
 
 .main {
     padding: 0 52px;
-}
-
-.main {
     width: 1500px;
     background-color: white;
     margin-left: auto;
     margin-right: auto;
     padding-top: 24px;
     display: grid;
-    grid-template-rows: 40px 40px 40px auto;
+    grid-template-rows: 40px 40px 40px 1220px 40px auto;
     grid-template-columns: 275px 950px 275px;
 }
 
@@ -156,7 +153,7 @@ body {
     justify-content: space-between;
 }
 
-.title {
+p {
     font-size: 30px;
     font-family: 'Linux Libertine','Georgia','Times','Source Serif Pro',serif;
 }
@@ -245,4 +242,52 @@ body {
     max-width: 600px;
     font-size: 1rem;
     line-height: 30px;
+}
+
+.crime-title {
+    border-bottom: 1px solid grey;
+    grid-area: 5/2/6/3;
+}
+
+.crime-table-div {
+    grid-area: 6/2/7/3;
+}
+
+.crime-table {
+    margin-top: 10px;
+    width: 950px;
+    border-collapse: collapse;
+}
+
+.crime-table thead, 
+.crime-table tbody {
+    background-color: #f8f9fa;
+}
+
+.crime-table thead tr th,
+.crime-table tbody tr td {
+    border: 1px solid gray;
+    text-align: center;
+    line-height: 40px;
+}
+
+.couch-gif {
+    width: 300px;
+    height: auto; 
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.poster {
+    width: 400px;
+    height: auto; 
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.water {
+    width: 400px;
+    height: auto; 
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
