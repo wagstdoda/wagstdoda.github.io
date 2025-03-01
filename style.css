@@ -10,7 +10,7 @@ body {
 
 .header {
     display: flex;
-    width: 78vw;
+    width: 1500px;
     justify-content: space-between;
     align-items: center;
     background-color: white;
@@ -39,7 +39,7 @@ body {
 }
 
 .wikipedia-text-div {
-    width: 6vw;
+    width: 130px;
     padding-top: 9px;
     padding-left: 10px;
 }
@@ -61,23 +61,23 @@ body {
 
 .eyeglass {
     display: flex;
-    width: 1.7vw;
+    width: 33px;
 }
 
 .search-bar {
     flex: 1;
-    height: 3.1vh;
+    height: 29px;
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
     border-right: 1px solid gray;
     border-left: none;
-    padding-right:11vw;
+    padding-right:200px;
 }
 
 .search-button-div {
     border: 1px solid gray;
     display: flex;
-    height: 3.1vh;
+    height: 29px;
     border-left: none;
 }
 
@@ -125,14 +125,15 @@ body {
 
 .main {
     padding: 0 52px;
-    width: 78vw;
+    width: 1500px;
     background-color: white;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 200px;
     padding-top: 24px;
     display: grid;
-    grid-template-rows: 5.8vh 5.8vh 5.8vh 130vh 5.8vh auto;
-    grid-template-columns: 14.5vw 49.5vw 14.5vw;
+    grid-template-rows: 40px 40px 40px 1200px 40px auto;
+    grid-template-columns: 280px 970px 280px;
 }
 
 .contents {
@@ -223,7 +224,7 @@ p {
 }
 
 .catbanner {
-    width: 16.5vw;
+    width: 300px;
 }
 
 .catfamilycontainer {
@@ -239,7 +240,7 @@ p {
 .account {
     grid-area: 4/2/5/3;
     padding-top:70px;
-    max-width: 32vw;
+    max-width: 600px;
     font-size: 1rem;
     line-height: 30px;
 }
@@ -255,7 +256,7 @@ p {
 
 .crime-table {
     margin-top: 10px;
-    width: 49.5vw;
+    width: 970px;
     border-collapse: collapse;
 }
 
@@ -272,21 +273,21 @@ p {
 }
 
 .couch-gif {
-    width: 16vw;
+    width: 300px;
     height: auto; 
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
 .poster {
-    width: 17vw;
+    width: 300px;
     height: auto; 
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
 .water {
-    width: 17vw;
+    width: 300px;
     height: auto; 
     margin-top: 30px;
     margin-bottom: 30px;
