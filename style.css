@@ -10,7 +10,7 @@ body {
 
 .header {
     display: flex;
-    width: 78%;
+    width: 1500px;
     justify-content: space-between;
     align-items: center;
     background-color: white;
@@ -113,7 +113,11 @@ body {
 
 .donate-div:hover,
 .login-div:hover,
-.account-div:hover {
+.account-div:hover,
+.title-subheader-2:hover,
+.title-subheader-4:hover,
+.title-subheader-5:hover,
+.title-subheader-6:hover {
     text-decoration: underline;
     text-decoration-color: rgb(51, 102, 204);
     cursor: pointer;
@@ -123,9 +127,122 @@ body {
     padding: 0 52px;
 }
 
-/*
-.header,
 .main {
-    border: 1px solid black;
+    width: 1500px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 24px;
+    display: grid;
+    grid-template-rows: 40px 40px 40px auto;
+    grid-template-columns: 275px 950px 275px;
 }
-*/
+
+.contents {
+    position: sticky;
+    top:80px;
+}
+
+.contents-div {
+    height: 100vh;
+    grid-area: 2/1/5/2;
+}
+
+.article-title {
+    border-bottom: 1px solid grey;
+    grid-area: 1/2/2/3;
+    height: 40px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 30px;
+    font-family: 'Linux Libertine','Georgia','Times','Source Serif Pro',serif;
+}
+
+.title-subheader-div {
+    border-bottom: 1px solid grey;
+    grid-area: 2/2/3/3;
+    display:flex;
+    justify-content: space-between;
+}
+
+.title-subheader-left {
+    display:flex;
+    align-items: center;
+}
+
+.title-subheader-right {
+    display:flex;
+    align-items: center;
+}
+
+.title-subheader-1 {
+    font-size: .875rem;
+    border-bottom: 2px solid gray;
+    padding: 10px 0;
+}
+
+.title-subheader-2 {
+    color: rgb(51, 102, 204);
+    font-size: .875rem;
+    margin-left: 17px;
+}
+
+.title-subheader-3 {
+    font-size: .875rem;
+    margin-right: 15px;
+    padding: 10px 0;
+    border-bottom: 2px solid gray;
+}
+
+.title-subheader-4 {
+    color: rgb(51, 102, 204);
+    font-size: .875rem;
+    margin-right: 13px;
+}
+
+.title-subheader-5 {
+    color: rgb(51, 102, 204);
+    font-size: .875rem;
+    margin-right: 15px;
+}
+
+.title-subheader-6 {
+    color: rgb(51, 102, 204);
+    font-size: .875rem;
+}
+
+.subheader-3 {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: 3/2/4/3;
+}
+
+.from-wikipedia {
+    font-size: .875rem;
+}
+
+.catbanner {
+    width:300px;
+}
+
+.catfamilycontainer {
+    grid-area: 4/2/5/3;
+    justify-self: end;
+}
+
+.intro {
+    grid-area: 4/2/5/3;
+    padding-top:30px;
+}
+
+.account {
+    grid-area: 4/2/5/3;
+    padding-top:70px;
+    max-width: 600px;
+    font-size: 1rem;
+    line-height: 30px;
+}
