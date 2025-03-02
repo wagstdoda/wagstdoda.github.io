@@ -292,3 +292,12 @@ p {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+@media (max-width:1570px) {
+    .header {
+        width:100vw;
+    }
+    .right-side-header{
+        margin-right: 75px;
+    }
+}
