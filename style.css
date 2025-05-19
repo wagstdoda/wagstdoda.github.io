@@ -1,315 +1,128 @@
-* {
+body, html {
     padding: 0;
     margin: 0;
-    font-family: sans-serif;
 }
 
-body {
-    background-color: #f8f9fa;
-}
-
-.header {
+div {
+    position:absolute;
+    width: 100%;
     display: flex;
-    width: 1500px;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    margin:0 auto;
-    padding: 0 52px;
+    justify-content: center;
 }
 
-.left-side-header {
-    display: flex;
-}
-
-.menu-button-div {
-    padding-top: 14px;
-}
-
-.menu-icon {
-    width: 20px;
-}
-
-.globe-div {
-    padding-left: 20px;
-}
-
-.globe {
-    width: 50px;
-}
-
-.wikipedia-text-div {
-    width: 130px;
-    padding-top: 9px;
-    padding-left: 10px;
-}
-
-.center-header {
-    display: flex;
-    flex: 1;
-    align-items: center;
-}
-
-.eyeglass-div {
-    margin-left: 52px;
-    padding-left: 2px;
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
-    border-right: none;
-    border-left: 1px solid gray;
-}
-
-.eyeglass {
-    display: flex;
-    width: 33px;
-}
-
-.search-bar {
-    flex: 1;
-    height: 29px;
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
-    border-right: 1px solid gray;
-    border-left: none;
-    padding-right:200px;
-}
-
-.search-button-div {
-    border: 1px solid gray;
-    display: flex;
-    height: 29px;
-    border-left: none;
-}
-
-.right-side-header {
-    display: flex;
-}
-
-.account-div {
-    font-size: 14px;
-    padding-right: 12px;
-}
-
-.login-div {
-    font-size: 14px;
-    padding-right: 12px;
-}
-
-.donate-div {
-    font-size: 14px;
-    padding-right: 12px;
-}
-
-.incognito-div {
-    padding-right: 12px;
-}
-
-.donate-div,
-.login-div,
-.account-div {
-    color: rgb(51, 102, 204);
-    font-size: 14px;
-}
-
-.donate-div:hover,
-.login-div:hover,
-.account-div:hover,
-.title-subheader-2:hover,
-.title-subheader-4:hover,
-.title-subheader-5:hover,
-.title-subheader-6:hover {
-    text-decoration: underline;
-    text-decoration-color: rgb(51, 102, 204);
-    cursor: pointer;
-}
-
-.main {
-    padding: 0 52px;
-    width: 1500px;
-    background-color: white;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 200px;
-    padding-top: 24px;
-    display: grid;
-    grid-template-rows: 40px 40px 40px 1200px 40px 1650px 40px auto;
-    grid-template-columns: 280px 970px 280px;
-}
-
-.contents {
-    position: sticky;
-    top:80px;
-}
-
-.contents-div {
-    height: 3233px;
-    grid-area: 2/1/5/2;
-}
-
-.article-title {
-    border-bottom: 1px solid grey;
-    grid-area: 1/2/2/3;
-    height: 40px;
-    display:flex;
-    justify-content: space-between;
+p, button {
+    font-family: "Abril Fatface", sans-serif;
 }
 
 p {
-    font-size: 30px;
-    font-family: 'Linux Libertine','Georgia','Times','Source Serif Pro',serif;
+    font-size: 7vh;
 }
 
-.title-subheader-div {
-    border-bottom: 1px solid grey;
-    grid-area: 2/2/3/3;
-    display:flex;
-    justify-content: space-between;
+.youWin, .youLose, .push , .blackJack{
+    display: none;
 }
 
-.title-subheader-left {
-    display:flex;
+.youWin {
+    color: #2bb021
+}
+
+.youLose {
+    color: #cf364f
+}
+
+@keyframes colorChange {
+  0% {
+    color: #2bb021;
+  }
+  50% {
+    color: #cf364f;
+  }
+  100% {
+    color: black;
+  }
+}
+
+.blackJack {
+  animation: colorChange 1s infinite alternate;
+}
+
+.table {
+    position: absolute;
+    padding: 0;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
+.card {
+    position: relative;
+    height: 20vh;
+    display: none;
+    padding: 0px 1vw;
+}
+
+.playerCards {
+    top: 65vh;
+    height: 20vh;
+}
+
+.dealerCards {
+    top: 15vh;
+    height: 20vh;
+}
+
+.buttonArea {
+    top: 88vh;
+    height: 8vh;
+}
+
+button{
+    position: relative;
+    width: 10vw;
+    font-size: 2vw;
+    margin: 0 1vw;
+    border-radius: 1vw;
+    border-width: 0px;
+}
+
+.deal {
+    background-color: #ebdb34;
+}
+
+.deal:hover {
+    background-color: #c9bb26;
+}
+
+.upperText {
+    display: flex;
     align-items: center;
+    top: 40vh;
+    height: 7vh;
 }
 
-.title-subheader-right {
-    display:flex;
+.lowerText {
+    display: flex;
     align-items: center;
+    top: 50vh;
+    height: 7vh;
 }
 
-.title-subheader-1 {
-    font-size: .875rem;
-    border-bottom: 2px solid gray;
-    padding: 10px 0;
+.hit {
+    background-color: #2bb021;
+    display: none;
 }
 
-.title-subheader-2 {
-    color: rgb(51, 102, 204);
-    font-size: .875rem;
-    margin-left: 17px;
+.hit:hover {
+    background-color: #25803d;
 }
 
-.title-subheader-3 {
-    font-size: .875rem;
-    margin-right: 15px;
-    padding: 10px 0;
-    border-bottom: 2px solid gray;
+.stand {
+    background-color: #cf364f;
+    display: none;
 }
 
-.title-subheader-4 {
-    color: rgb(51, 102, 204);
-    font-size: .875rem;
-    margin-right: 13px;
-}
-
-.title-subheader-5 {
-    color: rgb(51, 102, 204);
-    font-size: .875rem;
-    margin-right: 15px;
-}
-
-.title-subheader-6 {
-    color: rgb(51, 102, 204);
-    font-size: .875rem;
-}
-
-.subheader-3 {
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    grid-area: 3/2/4/3;
-}
-
-.from-wikipedia {
-    font-size: .875rem;
-}
-
-.catbanner {
-    width: 300px;
-}
-
-.catfamilycontainer {
-    grid-area: 4/2/5/3;
-    justify-self: end;
-}
-
-.intro {
-    grid-area: 4/2/5/3;
-    padding-top:30px;
-}
-
-.account {
-    grid-area: 4/2/5/3;
-    padding-top:70px;
-    max-width: 600px;
-    font-size: 1rem;
-    line-height: 30px;
-}
-
-.crime-title {
-    border-bottom: 1px solid grey;
-    grid-area: 5/2/6/3;
-}
-
-.crime-table-div {
-    grid-area: 6/2/7/3;
-}
-
-.crime-table {
-    margin-top: 10px;
-    width: 970px;
-    border-collapse: collapse;
-}
-
-.crime-table thead, 
-.crime-table tbody {
-    background-color: #f8f9fa;
-}
-
-.crime-table thead tr th,
-.crime-table tbody tr td {
-    border: 1px solid gray;
-    text-align: center;
-    line-height: 40px;
-}
-
-.couch-gif {
-    width: 300px;
-    height: auto; 
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.poster {
-    width: 300px;
-    height: auto; 
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.water {
-    width: 300px;
-    height: auto; 
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.history-title {
-    border-bottom: 1px solid grey;
-    grid-area: 7/2/8/3;
-}
-
-.history {
-    font-size: 1rem;
-    line-height: 30px;
-    grid-area: 8/2/9/3;
-    padding-top: 40px;
-}
-
-@media (max-width:1570px) {
-    .header {
-        width:100vw;
-    }
-    .right-side-header{
-        margin-right: 75px;
-    }
+.stand:hover {
+    background-color: #8c112d;
 }

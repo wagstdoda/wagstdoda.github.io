@@ -3,221 +3,292 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Elle the Cat</title>
     <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
+    />
+    <title>BlackJack</title>
   </head>
   <body>
-    <div class="header">
-      <div class="left-side-header">
-        <div class="menu-button-div">
-          <img
-            class="menu-icon"
-            src="https://en.wikipedia.org/w/load.php?modules=skins.vector.icons&image=menu&format=original&lang=en&skin=vector-2022&version=1uzsj"
-          />
-        </div>
-        <div class="globe-div">
-          <img
-            class="globe"
-            src="https://en.wikipedia.org/static/images/icons/wikipedia.png"
-          />
-        </div>
-        <div class="wikipedia-text-div">
-          <img
-            class="wikipedia-logo"
-            src="./images/wikipedia-wordmark-en.svg"
-          />
-          <img
-            class="free-enclyclopedia"
-            src="https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-tagline-en.svg"
-          />
-        </div>
-      </div>
-      <div class="center-header">
-        <div class="eyeglass-div">
-          <img class="eyeglass" src="./images/search-button.png" />
-        </div>
-        <div class="search-bar-div">
-          <input
-            class="search-bar"
-            type="text"
-            placeholder="Search Wikipedia"
-          />
-        </div>
-        <div class="search-button-div">
-          <img class="search" src="./images/search.png" />
-        </div>
-      </div>
-      <div class="right-side-header">
-        <div class="incognito-div">
-          <img
-            src="https://en.wikipedia.org/w/load.php?modules=skins.vector.icons.js&image=appearance&format=original&lang=en&skin=vector-2022&version=hspq7"
-          />
-        </div>
-        <div class="donate-div">Donate</div>
-        <div class="account-div">Create account</div>
-        <div class="login-div">Log in</div>
-        <div class="more-icon-div">
-          <img
-            src="https://en.wikipedia.org/w/load.php?modules=skins.vector.icons&image=ellipsis&format=original&lang=en&skin=vector-2022&version=1uzsj"
-          />
-        </div>
-      </div>
+    <img class="table" src="./Images/Tabletop.png" />
+
+    <img
+      class="card"
+      id="twoHearts"
+      src="./Images/Playing Cards/twoHearts.png"
+    />
+    <img
+      class="card"
+      id="twoDiamonds"
+      src="./Images/Playing Cards/twoDiamonds.png"
+    />
+    <img
+      class="card"
+      id="twoSpades"
+      src="./Images/Playing Cards/twoSpades.png"
+    />
+    <img class="card" id="twoClubs" src="./Images/Playing Cards/twoClubs.png" />
+
+    <img
+      class="card"
+      id="threeHearts"
+      src="./Images/Playing Cards/threeHearts.png"
+    />
+    <img
+      class="card"
+      id="threeDiamonds"
+      src="./Images/Playing Cards/threeDiamonds.png"
+    />
+    <img
+      class="card"
+      id="threeSpades"
+      src="./Images/Playing Cards/threeSpades.png"
+    />
+    <img
+      class="card"
+      id="threeClubs"
+      src="./Images/Playing Cards/threeClubs.png"
+    />
+
+    <img
+      class="card"
+      id="fourHearts"
+      src="./Images/Playing Cards/fourHearts.png"
+    />
+    <img
+      class="card"
+      id="fourDiamonds"
+      src="./Images/Playing Cards/fourDiamonds.png"
+    />
+    <img
+      class="card"
+      id="fourSpades"
+      src="./Images/Playing Cards/fourSpades.png"
+    />
+    <img
+      class="card"
+      id="fourClubs"
+      src="./Images/Playing Cards/fourClubs.png"
+    />
+
+    <img
+      class="card"
+      id="fiveHearts"
+      src="./Images/Playing Cards/fiveHearts.png"
+    />
+    <img
+      class="card"
+      id="fiveDiamonds"
+      src="./Images/Playing Cards/fiveDiamonds.png"
+    />
+    <img
+      class="card"
+      id="fiveSpades"
+      src="./Images/Playing Cards/fiveSpades.png"
+    />
+    <img
+      class="card"
+      id="fiveClubs"
+      src="./Images/Playing Cards/fiveClubs.png"
+    />
+
+    <img
+      class="card"
+      id="sixHearts"
+      src="./Images/Playing Cards/sixHearts.png"
+    />
+    <img
+      class="card"
+      id="sixDiamonds"
+      src="./Images/Playing Cards/sixDiamonds.png"
+    />
+    <img
+      class="card"
+      id="sixSpades"
+      src="./Images/Playing Cards/sixSpades.png"
+    />
+    <img class="card" id="sixClubs" src="./Images/Playing Cards/sixClubs.png" />
+
+    <img
+      class="card"
+      id="sevenHearts"
+      src="./Images/Playing Cards/sevenHearts.png"
+    />
+    <img
+      class="card"
+      id="sevenDiamonds"
+      src="./Images/Playing Cards/sevenDiamonds.png"
+    />
+    <img
+      class="card"
+      id="sevenSpades"
+      src="./Images/Playing Cards/sevenSpades.png"
+    />
+    <img
+      class="card"
+      id="sevenClubs"
+      src="./Images/Playing Cards/sevenClubs.png"
+    />
+
+    <img
+      class="card"
+      id="eightHearts"
+      src="./Images/Playing Cards/eightHearts.png"
+    />
+    <img
+      class="card"
+      id="eightDiamonds"
+      src="./Images/Playing Cards/eightDiamonds.png"
+    />
+    <img
+      class="card"
+      id="eightSpades"
+      src="./Images/Playing Cards/eightSpades.png"
+    />
+    <img
+      class="card"
+      id="eightClubs"
+      src="./Images/Playing Cards/eightClubs.png"
+    />
+
+    <img
+      class="card"
+      id="nineHearts"
+      src="./Images/Playing Cards/nineHearts.png"
+    />
+    <img
+      class="card"
+      id="nineDiamonds"
+      src="./Images/Playing Cards/nineDiamonds.png"
+    />
+    <img
+      class="card"
+      id="nineSpades"
+      src="./Images/Playing Cards/nineSpades.png"
+    />
+    <img
+      class="card"
+      id="nineClubs"
+      src="./Images/Playing Cards/nineClubs.png"
+    />
+
+    <img
+      class="card"
+      id="tenHearts"
+      src="./Images/Playing Cards/tenHearts.png"
+    />
+    <img
+      class="card"
+      id="tenDiamonds"
+      src="./Images/Playing Cards/tenDiamonds.png"
+    />
+    <img
+      class="card"
+      id="tenSpades"
+      src="./Images/Playing Cards/tenSpades.png"
+    />
+    <img class="card" id="tenClubs" src="./Images/Playing Cards/tenClubs.png" />
+
+    <img
+      class="card"
+      id="jackHearts"
+      src="./Images/Playing Cards/jackHearts.png"
+    />
+    <img
+      class="card"
+      id="jackDiamonds"
+      src="./Images/Playing Cards/jackDiamonds.png"
+    />
+    <img
+      class="card"
+      id="jackSpades"
+      src="./Images/Playing Cards/jackSpades.png"
+    />
+    <img
+      class="card"
+      id="jackClubs"
+      src="./Images/Playing Cards/jackClubs.png"
+    />
+
+    <img
+      class="card"
+      id="queenHearts"
+      src="./Images/Playing Cards/queenHearts.png"
+    />
+    <img
+      class="card"
+      id="queenDiamonds"
+      src="./Images/Playing Cards/queenDiamonds.png"
+    />
+    <img
+      class="card"
+      id="queenSpades"
+      src="./Images/Playing Cards/queenSpades.png"
+    />
+    <img
+      class="card"
+      id="queenClubs"
+      src="./Images/Playing Cards/queenClubs.png"
+    />
+
+    <img
+      class="card"
+      id="kingHearts"
+      src="./Images/Playing Cards/kingHearts.png"
+    />
+    <img
+      class="card"
+      id="kingDiamonds"
+      src="./Images/Playing Cards/kingDiamonds.png"
+    />
+    <img
+      class="card"
+      id="kingSpades"
+      src="./Images/Playing Cards/kingSpades.png"
+    />
+    <img
+      class="card"
+      id="kingClubs"
+      src="./Images/Playing Cards/kingClubs.png"
+    />
+
+    <img
+      class="card"
+      id="aceHearts"
+      src="./Images/Playing Cards/aceHearts.png"
+    />
+    <img
+      class="card"
+      id="aceDiamonds"
+      src="./Images/Playing Cards/aceDiamonds.png"
+    />
+    <img
+      class="card"
+      id="aceSpades"
+      src="./Images/Playing Cards/aceSpades.png"
+    />
+    <img class="card" id="aceClubs" src="./Images/Playing Cards/aceClubs.png" />
+    <img class="card" id="hidden" src="./Images/Playing Cards/Hidden.png" />
+
+    <div class="upperText">
+      <p class="pays">BlackJack Pays 3 To 2</p>
+      <p class="blackJack">BlackJack!</p>
+      <p class="youWin">You Won</p>
+      <p class="youLose">You Lose</p>
+      <p class="push">Push</p>
     </div>
-    <div class="main">
-      <div class="contents-div">
-        <img class="contents" src="./images/contents.png" />
-      </div>
-      <div class="article-title">
-        <p>Elle (cat)</p>
-        <img class="languages" src="./images/languages.png" />
-      </div>
-      <div class="title-subheader-div">
-        <div class="title-subheader-left">
-          <p class="title-subheader-1">Article</p>
-          <p class="title-subheader-2">Talk</p>
-        </div>
-        <div class="title-subheader-right">
-          <p class="title-subheader-3">Read</p>
-          <p class="title-subheader-4">View Source</p>
-          <p class="title-subheader-5">View History</p>
-          <p class="title-subheader-6">Tools</p>
-        </div>
-      </div>
-      <div class="subheader-3">
-        <div class="from-wikipedia">From Wikipedia, the free encyclopedia</div>
-        <div class="tool-image">
-          <img src="./images/subheader3image.png" />
-        </div>
-      </div>
-      <div class="catfamilycontainer">
-        <img class="catbanner" src="./images/catfamily.jpg" />
-      </div>
-      <div class="intro">
-        An average account of one who met Elle (there are many such accounts):
-      </div>
-      <div class="account">
-        "From the moment I met your cat, I knew she was something special. I’ve
-        encountered many cats in my life, but few have left such a lasting
-        impression as she did. From her gentle demeanor to her playful antics,
-        every moment spent in her company was a true delight. It’s not often
-        that you meet a feline companion with such a perfect balance of
-        intelligence, affection, and independence, but your cat embodies all
-        those qualities effortlessly. The first thing that stood out about her
-        was her striking appearance. Whether she was basking in a sunbeam or
-        prancing gracefully across the room, she carried herself with an
-        undeniable elegance. Her soft fur was a testament to how well-loved and
-        cared for she is, and I found myself unable to resist giving her gentle
-        strokes whenever she sauntered over for attention. Her eyes, bright and
-        expressive, conveyed a depth of understanding that made our interactions
-        feel even more meaningful. Beyond her beauty, her personality truly
-        stole my heart. She had a way of making me feel both welcomed and
-        entertained. She was affectionate but never demanding, knowing just the
-        right moments to nuzzle against my leg or curl up beside me on the
-        couch. The gentle purring that emanated from her whenever she was
-        content was soothing, like a calming melody in the background of our
-        time together. It was clear that she possessed a natural warmth that
-        made it impossible not to adore her. What truly fascinated me, however,
-        was her playful and curious nature. Watching her explore the environment
-        with such enthusiasm was a joy in itself. Whether she was chasing a
-        stray piece of yarn, pouncing on an unsuspecting toy, or engaging in an
-        acrobatic display of agility, she exuded boundless energy. Her
-        intelligence shone through in the way she solved little puzzles, figured
-        out how to open doors, or responded to certain words and cues. She was
-        the perfect mix of mischievous and well-behaved, keeping me entertained
-        without ever crossing the line into troublemaking. One of the most
-        memorable moments I shared with her was when she decided to sit on my
-        lap unprompted. She had been circling me for a while, giving me a few
-        curious glances before finally deciding that I was worthy of her trust.
-        When she finally settled in, curling up comfortably, I felt a true sense
-        of companionship. She wasn’t just a pet; she was a friend, one who chose
-        to share her time and affection with me. That small moment solidified my
-        admiration for her. It’s rare to meet an animal that feels like an
-        instant kindred spirit, but that’s exactly how I felt about your cat.
-        She possesses a charm that is impossible to ignore, a personality that
-        is both endearing and captivating. I can only imagine the countless
-        wonderful moments you must share with her on a daily basis. If ever
-        there was a cat deserving of the title “the perfect feline companion,”
-        she would undoubtedly be a top contender. Spending time with her was an
-        experience I will always cherish." - ChatGPT
-      </div>
-      <div class="crime-title">
-        <p>List of Crimes</p>
-      </div>
-      <div class="crime-table-div">
-        <table class="crime-table">
-          <thead>
-            <tr>
-              <th>Crime</th>
-              <th>Evidence</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                Destruction of Property (my couch)<br /><a
-                  href="https://docs.legis.wisconsin.gov/statutes/statutes/943/i/01/1"
-                  target="_blank"
-                  >Wis. Stat. § 943.01</a
-                ><br />Class A Misdemeanor
-              </td>
-              <td><img class="couch-gif" src="./images/couch.gif" /></td>
-            </tr>
-            <tr>
-              <td>
-                Theft<br /><a
-                  href="https://docs.legis.wisconsin.gov/statutes/statutes/943/iii/20"
-                  target="_blank"
-                  >Wis. Stat. § 943.20</a
-                ><br />Class A misdemeanor: For theft of property valued at or
-                under $2,500
-              </td>
-              <td><img class="poster" src="./images/Missing-Poster.jpg" /></td>
-            </tr>
-            <tr>
-              <td>
-                Introduction of Pollutants to the Water Supply<br /><a
-                  href="https://www.govinfo.gov/content/pkg/STATUTE-86/pdf/STATUTE-86-Pg816.pdf#page=1"
-                  target="_blank"
-                  >Federal Clean Water Act (CWA)</a
-                ><br />Sentenced to indefinite detention in domestic blacksite
-                (my apartment)
-              </td>
-              <td><img class="water" src="./images/water.jpeg" /></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="history-title">
-        <p>Early Life</p>
-      </div>
-      <div class="history">
-        Elle was born on a stormy night beneath the rusted frame of an abandoned
-        truck, but fate had bigger plans for her than mere survival. From the
-        moment she opened her eyes, the world seemed to pull her into the
-        extraordinary. At six weeks old, after a gang of raccoons scattered her
-        family, Elle stumbled into the heart of a secret underground
-        resistance—an elite network of alley cats who communicated through
-        cryptic scratches on dumpsters and moonlit rendezvous. Their mission? To
-        thwart the plans of the Canine Syndicate, a pack of cunning dogs that
-        sought control over the city’s food supply. Elle trained under Luna, a
-        legendary feline spy who had infiltrated human government buildings and
-        once stolen classified documents by knocking them off desks. Through
-        rigorous rooftop chases and daring leaps over traffic, Elle honed her
-        skills, learning to land soundlessly and vanish into the night like a
-        shadow. Her biggest mission came when the Canine Syndicate secured a
-        warehouse filled with the city's most coveted prize—an endless supply of
-        tuna cans. Elle, now a sleek and fearless warrior, led a high-stakes
-        heist. Dodging security cameras, outmaneuvering guard dogs, and using
-        her whiskers to detect tripwires, she infiltrated the facility. At the
-        last moment, Brutus, the Syndicate’s enforcer, blocked her escape. They
-        fought atop towering shelves, dodging falling cans like feline action
-        heroes. With a final, gravity-defying spin, Elle sent Brutus tumbling
-        into a pile of dog treats, sealing her victory. Days later, a human
-        found Elle lounging atop a rooftop, victorious yet exhausted. They
-        scooped her up, whispering words of kindness. She allowed it—after all,
-        even warriors deserved a throne. As she curled into their arms, she
-        purred. The city was safe… for now.
-      </div>
+    <div class="lowerText">
+      <p class="standText">Dealer must stand on 17 and must draw to 16</p>
     </div>
+    <div class="dealerCards"></div>
+    <div class="playerCards"></div>
+    <div class="buttonArea">
+      <button class="deal">Deal</button>
+      <button class="hit">Hit</button>
+      <button class="stand">Stand</button>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
