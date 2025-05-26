@@ -93,9 +93,9 @@ function count(hand) {
   return handTotal;
 }
 
-function checkStatus (playerTotal, dealerTotal, playerTurn, dealerTurnFinished) {
+function checkStatus (playerTotal, playerHand, dealerTotal, playerTurn, dealerTurnFinished) {
   if (playerTurn){
-    if (playerTotal === 21) {
+    if (playerTotal === 21 && playerHand.length === 2) {
       return 'playerBlackjack';
     } else if (playerTotal > 21) {
       return 'lose';
@@ -105,9 +105,7 @@ function checkStatus (playerTotal, dealerTotal, playerTurn, dealerTurnFinished) 
   } else if (!playerTurn) {
     //dealers turn
     if (dealerTurnFinished) {
-      if (dealerTotal === 21) {
-        return 'lose';
-      } else if (dealerTotal < 21 && dealerTotal > playerTotal) {
+      if (dealerTotal > playerTotal && dealerTotal <= 21) {
         return 'lose';
       } else if (dealerTotal === playerTotal){
         return 'push';
@@ -140,11 +138,13 @@ function fadeOut(item, delay) {
   }, delay+1500);
 }
 
-//at end of round
-function evaluate(result) {
+function evaluate(result, betSize, cash, playerHand, dealerHand) {
   let element = null;
+  let cashChange = null;
 
   if (result !== null) {
+    roundCount.value += 1;
+
     element = document.querySelector('.hit');
     fadeOut(element, 0);
     element = document.querySelector('.stand');
@@ -153,141 +153,312 @@ function evaluate(result) {
     fadeOut(element, 3000);
     element = document.querySelector('.standText');
     fadeOut(element, 3000);
-  }
 
-  if (result === 'playerBlackjack'){
-    element = document.querySelector('.blackJack');
+    let another = document.querySelector('.hand');
+    fadeIn(another, 7000);
+    let stop = document.querySelector('.stop');
+    fadeIn(stop, 7000);
+    let report = document.querySelector('.cashReport');
+
+    if (result === 'playerBlackjack'){
+      element = document.querySelector('.blackJack');
+      cashChange = Math.round(betSize*3/2 + betSize);
+
+      setTimeout(() => {
+        fadeIn(element, 1000);
+        report.style.color = '#2bb021';
+        report.textContent = `+$${cashChange}`;
+        fadeIn(report, 1000);
+      }, 5000);
+    } else if (result === 'win'){
+      element = document.querySelector('.youWin');
+      cashChange = betSize*2;
+
+      setTimeout(() => {
+        fadeIn(element, 1000);
+        report.style.color = '#2bb021';
+        report.textContent = `+$${cashChange}`;
+        fadeIn(report, 1000);
+      }, 5000);
+    } else if (result === 'lose'){
+      element = document.querySelector('.youLose');
+      cashChange = 0;
+
+      setTimeout(() => {
+        fadeIn(element, 1000);
+        report.style.color = '#cf364f';
+        report.textContent = `+$${cashChange}`;
+        fadeIn(report, 1000);
+      }, 5000);
+    } else if (result === 'push') {
+      element = document.querySelector('.push');
+      cashChange = betSize;
+
+      setTimeout(() => {
+        fadeIn(element, 1000);
+        report.style.color = 'black';
+        report.textContent = `+$${cashChange}`;
+        fadeIn(report, 1000);
+      }, 5000);
+    }
+
+    cash.value += cashChange;
+
     setTimeout(() => {
-      fadeIn(element, 1000);
-    }, 5000);
-  } else if (result === 'win'){
-    element = document.querySelector('.youWin');
+        document.querySelector('.cash').textContent = `$${cash.value}`;
+    }, 6000);
+
+    function clearTable(playerHand, dealerHand) {
+
+      another.style.display = 'none';
+      stop.style.display = 'none';
+
+      for(let i=0; i<playerHand.length; i++){
+        let playerCard = document.querySelector(`#${playerHand[i].name}`);
+        fadeOut(playerCard, 0);
+      }
+
+      for(let i=0; i<dealerHand.length; i++){
+        let dealerCard = document.querySelector(`#${dealerHand[i].name}`);
+        fadeOut(dealerCard, 0);
+      }
+
+      setTimeout(() => {
+        //move player cards and dealer cards back to original spot
+
+        for(let i=0; i<playerHand.length; i++){
+          let img = document.querySelector(`#${playerHand[i].name}`);
+          document.querySelector(`body`).appendChild(img);
+        }
+
+        for(let i=0; i<dealerHand.length; i++){
+          let img = document.querySelector(`#${dealerHand[i].name}`);
+          document.querySelector(`body`).appendChild(img);
+        }
+
+      }, 2000);
+
+      fadeOut(document.querySelector('#hidden'), 0);
+      fadeOut(document.querySelector('.youWin'), 0);
+      fadeOut(document.querySelector('.youLose'), 0);
+      fadeOut(document.querySelector('.blackJack'), 0);
+      fadeOut(document.querySelector('.push'), 0);
+      fadeOut(report, 0);
+
+    }
+
+    function handleAnotherClick () {
+      //Another hand
+        
+      clearTable(playerHand, dealerHand);
+
+      setTimeout(() => {
+        fadeIn(document.querySelector('.pays'), 1000);
+        fadeIn(document.querySelector('.standText'), 1000);
+
+        document.querySelector('.lowerBetText').textContent = `(1-${cash.value})`;
+        fadeIn(document.querySelector('.betArea'), 100);
+      }, 3000);
+
+      main(cash, roundCount);
+    }
+
+    function handleStopClick() {
+      //Cash out
+      
+      clearTable(playerHand, dealerHand);
+
+      setTimeout(() => {
+        endGame();
+      }, 2000);
+    }
+
     setTimeout(() => {
-      fadeIn(element, 1000);
-    }, 5000);
-  } else if (result === 'lose'){
-    element = document.querySelector('.youLose');
+      another.onclick = () => handleAnotherClick();
+    }, 7000);
+
     setTimeout(() => {
-      fadeIn(element, 1000);
-    }, 5000);
-  } else if (result === 'push') {
-    element = document.querySelector('.push');
-    setTimeout(() => {
-      fadeIn(element, 1000);
-    }, 5000);
+      stop.onclick = () => handleStopClick();
+    }, 7000);
   }
 }
 
-  document.querySelector('.deal').addEventListener('click', function() {
-    document.querySelector('.deal').style.display = 'none';
+function endGame () {
+  let total = document.querySelector('.totalWin');
+  let rounds = document.querySelector('.roundsPlayed');
 
-    //round loop
-    let status = null;
-    let result = null;
-    let dealerTurnFinished = false;
-    let playerHand = [];
-    let dealerHand = [];
-    let deck = shuffle(unshuffledDeck);
+  total.textContent = `You started with $100 and ended with $${cash.value}`;
 
-    //initial deal
+  if (roundCount.value === 1) {
+    rounds.textContent = `You played a total of 1 hand`;
+  } else {
+    rounds.textContent = `You played a total of ${roundCount.value} hands`;
+  }
 
-    //visible 1st card
-    playerHand = deal(deck, playerHand);
-    let img = document.querySelector(`#${playerHand[playerHand.length-1].name}`);
-    document.querySelector(`.playerCards`).appendChild(img);
-    fadeIn(img, 0);
+  fadeIn(total, 1500);
+  fadeIn(rounds, 1500);
+}
 
-    //hidden 2nd card
-    dealerHand = deal(deck, dealerHand);
-    img = document.querySelector('#hidden');
-    document.querySelector(`.dealerCards`).appendChild(img);
-    fadeIn(img, 1000);
+function bet(cash){
+  return new Promise((resolve, reject) => {
 
-    //visible 3rd card
-    playerHand = deal(deck, playerHand);
-    img = document.querySelector(`#${playerHand[playerHand.length-1].name}`);
-    document.querySelector(`.playerCards`).appendChild(img);
-    fadeIn(img, 2000);
+    let inputButton = document.querySelector('.submitInput');
+    function handleBetClick () {
+      let betSize = Number(document.querySelector('.betInput').value.trim());
 
-    //visible 4th card
+      if (betSize >= 1 && betSize <= cash.value && betSize%1 === 0) {
+        let div = document.querySelector('.betArea');
+        fadeOut(div, 0);
+
+        resolve(betSize);
+      } else {
+        let text = document.querySelector('.lowerBetText');
+        text.classList.add('flashText');
+
+        setTimeout(() => {
+          text.classList.remove('flashText');
+        }, 2000);
+      }
+    }
+    inputButton.onclick = () => handleBetClick();
+  });
+}
+
+function handleHitClick (playerHand, deck, playerTotal, playerTurn, status, dealerTotal, dealerTurnFinished, result, betSize, cash, dealerHand) {
+  //add another card to hand
+  playerHand = deal(deck, playerHand);
+  img = document.querySelector(`#${playerHand[playerHand.length-1].name}`);
+  document.querySelector(`.playerCards`).appendChild(img);
+  fadeIn(img, 100);
+
+  //recount player hand
+  playerTotal = count(playerHand);
+
+  // Auto-stand if player hits 21
+  if (playerTotal === 21) {
+    handleStandClick(playerHand, deck, playerTotal, playerTurn, status, dealerTotal, dealerTurnFinished, result, betSize, cash, dealerHand);
+    return;
+  }
+
+  //check status
+  status = checkStatus(playerTotal, playerHand, dealerTotal, playerTurn, dealerTurnFinished);
+
+  if (status === 'playerBlackjack' || status === 'lose') {
+    result = status;
+  }
+  evaluate(result, betSize, cash, playerHand, dealerHand);
+}
+
+function handleStandClick (playerHand, deck, playerTotal, playerTurn, status, dealerTotal, dealerTurnFinished, result, betSize, cash, dealerHand) {
+  // dealers turn
+  playerTurn = false;
+  document.querySelector('#hidden').style.display = 'none';
+
+  img = document.querySelector(`#${dealerHand[0].name}`);
+  document.querySelector(`.dealerCards`).appendChild(img);
+  fadeIn(img, 100);
+
+  let counter = 1;
+  while (count(dealerHand) < 17) {
     dealerHand = deal(deck, dealerHand);
     img = document.querySelector(`#${dealerHand[dealerHand.length-1].name}`);
     document.querySelector(`.dealerCards`).appendChild(img);
-    fadeIn(img, 3000);
+    fadeIn(img, 1000*counter);
 
-    //count players initial hand
-    let playerTotal = count(playerHand);
-    let dealerTotal = count(dealerHand);
-
-    //check status (player's turn)
-    status = checkStatus(playerTotal, dealerTotal, true, dealerTurnFinished);
-
-    if (status === 'playerBlackjack') {
-      result = status;
-    } else if (status === null) {
-
-      //hit and stand buttons
-      fadeIn(document.querySelector('.stand'), 4000);
-      fadeIn(document.querySelector('.hit'), 4000);
-
-      document.querySelector('.hit').addEventListener('click', function() {
-
-        //add another card to hand
-        playerHand = deal(deck, playerHand);
-        img = document.querySelector(`#${playerHand[playerHand.length-1].name}`);
-        document.querySelector(`.playerCards`).appendChild(img);
-        fadeIn(img, 100);
-
-        //recount player hand
-        playerTotal = count(playerHand);
-
-        //check status
-        status = checkStatus(playerTotal, dealerTotal, true, dealerTurnFinished);
-
-        if (status === 'playerBlackjack' || status === 'lose') {
-          result = status;
-        }
-        evaluate(result);
-      });
-
-      document.querySelector('.stand').addEventListener('click', function() {
-
-      // dealers turn
-      document.querySelector('#hidden').style.display = 'none';
-
-      img = document.querySelector(`#${dealerHand[0].name}`);
-      document.querySelector(`.dealerCards`).appendChild(img);
-      fadeIn(img, 100);
-      
-      if (dealerTotal === 21) {
-        dealerTurnFinished = true;
-      }
-      status = checkStatus(playerTotal, dealerTotal, false, dealerTurnFinished);
-      if (status !== null){
-        result = status;
-        evaluate(result);
-      }
-
-      let counter = 1;
-      while (dealerTurnFinished !== true) {
-        dealerHand = deal(deck, dealerHand);
-        img = document.querySelector(`#${dealerHand[dealerHand.length-1].name}`);
-        document.querySelector(`.dealerCards`).appendChild(img);
-        fadeIn(img, 1000*counter);
-
-        dealerTotal = count(dealerHand);
-        counter += 1;
-
-        if (dealerTotal < 17) {
-          dealerTurnFinished = false;
-        } else {
-          dealerTurnFinished = true;
-        }
-      }
-      status = checkStatus(playerTotal, dealerTotal, false, dealerTurnFinished);
-      result = status;
-      evaluate(result);
-    });
+    dealerTotal = count(dealerHand);
+    counter += 1;
   }
-  evaluate(result);
-});
+  playerTotal = count(playerHand);
+  dealerTurnFinished = true;
+  status = checkStatus(playerTotal, playerHand, dealerTotal, playerTurn, dealerTurnFinished);
+  result = status;
+  evaluate(result, betSize, cash, playerHand, dealerHand);
+}
+
+function onDealClick() {
+  handleDealClick(betSize, cash);
+}
+
+function handleDealClick(betSize, cash) {
+
+  let dealButton = document.querySelector('.deal');
+  dealButton.style.display = 'none';
+
+  //round
+  let status = null;
+  let result = null;
+  let playerTurn = true;
+  let dealerTurnFinished = false;
+  let playerHand = [];
+  let dealerHand = [];
+  let deck = shuffle(unshuffledDeck);
+
+  //initial deal
+
+  //visible 1st card
+  playerHand = deal(deck, playerHand);
+  let img = document.querySelector(`#${playerHand[playerHand.length-1].name}`);
+  document.querySelector(`.playerCards`).appendChild(img);
+  fadeIn(img, 1000);
+
+  //hidden 2nd card
+  dealerHand = deal(deck, dealerHand);
+  img = document.querySelector('#hidden');
+  document.querySelector(`.dealerCards`).appendChild(img);
+  fadeIn(img, 2000);
+
+  //visible 3rd card
+  playerHand = deal(deck, playerHand);
+  img = document.querySelector(`#${playerHand[playerHand.length-1].name}`);
+  document.querySelector(`.playerCards`).appendChild(img);
+  fadeIn(img, 3000);
+
+  //visible 4th card
+  dealerHand = deal(deck, dealerHand);
+  img = document.querySelector(`#${dealerHand[dealerHand.length-1].name}`);
+  document.querySelector(`.dealerCards`).appendChild(img);
+  fadeIn(img, 4000);
+
+  //count players initial hand
+  let playerTotal = count(playerHand);
+  let dealerTotal = count(dealerHand);
+
+  //check status (player's turn)
+  status = checkStatus(playerTotal, playerHand, dealerTotal, playerTurn, dealerTurnFinished);
+
+  if (status === 'playerBlackjack') {
+    result = status;
+  } else if (status === null) {
+
+    //hit and stand buttons
+    let hitButton = document.querySelector('.hit');
+    let standButton = document.querySelector('.stand');
+
+    fadeIn(standButton, 4000);
+    fadeIn(hitButton, 4000);
+
+    hitButton.onclick = () => handleHitClick(playerHand, deck, playerTotal, playerTurn, status, dealerTotal, dealerTurnFinished, result, betSize, cash, dealerHand);
+    standButton.onclick = () => handleStandClick(playerHand, deck, playerTotal, playerTurn, status, dealerTotal, dealerTurnFinished, result, betSize, cash, dealerHand);
+  }
+  evaluate(result, betSize, cash, playerHand, dealerHand);
+}
+
+async function main (cash, roundCount){
+  try {
+    let betSize = await bet(cash);
+    cash.value -= betSize;
+    document.querySelector('.cash').textContent = `$${cash.value}`;
+
+    let dealButton = document.querySelector('.deal');
+    fadeIn(dealButton, 1500);
+
+    dealButton.onclick = () => handleDealClick(betSize, cash);
+
+  } catch (error) {
+    alert("If you're seeing this, something has gone terribly wrong.");
+  }
+}
+
+let cash = { value: 100 };
+let roundCount = { value: 0};
+main(cash, roundCount);

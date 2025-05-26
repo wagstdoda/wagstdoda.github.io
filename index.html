@@ -271,7 +271,22 @@
     <img class="card" id="aceClubs" src="./Images/Playing Cards/aceClubs.png" />
     <img class="card" id="hidden" src="./Images/Playing Cards/Hidden.png" />
 
+    <div class="betDiv">
+      <div class="betArea">
+        <div class="upperBetTextArea">
+          <p class="upperBetText">Place Your Bet</p>
+        </div>
+        <div class="lowerBetTextArea">
+          <p class="lowerBetText">(1-100)</p>
+        </div>
+        <div class="inputArea">
+          <input class="betInput" id="betInput" type="text" placeholder="0" />
+          <button class="submitInput">Bet</button>
+        </div>
+      </div>
+    </div>
     <div class="upperText">
+      <p class="roundsPlayed"></p>
       <p class="pays">BlackJack Pays 3 To 2</p>
       <p class="blackJack">BlackJack!</p>
       <p class="youWin">You Won</p>
@@ -279,12 +294,19 @@
       <p class="push">Push</p>
     </div>
     <div class="lowerText">
+      <p class="totalWin"></p>
+      <p class="cashReport"></p>
       <p class="standText">Dealer must stand on 17 and must draw to 16</p>
     </div>
     <div class="dealerCards"></div>
     <div class="playerCards"></div>
     <div class="buttonArea">
-      <button class="deal">Deal</button>
+      <p class="cash">$100</p>
+      <div class="dealArea">
+        <button class="deal">Deal</button>
+        <button class="hand">Next Hand</button>
+        <button class="stop">Cash Out</button>
+      </div>
       <button class="hit">Hit</button>
       <button class="stand">Stand</button>
     </div>
