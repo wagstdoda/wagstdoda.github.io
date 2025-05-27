@@ -26,7 +26,7 @@ p {
     color: #2bb021
 }
 
-.youLose {
+.youLose, .betMinus {
     color: #cf364f
 }
 
@@ -198,8 +198,14 @@ button {
     height: 5rem;
 }
 
-.cashReport {
+.cashReport, .betMinus {
     display: none;
+}
+
+.betMinus {
+    font-size: 5rem;
+    margin: 0 auto 0 0;
+    align-self: center;
 }
 
 .hit, .hand {

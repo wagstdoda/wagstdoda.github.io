@@ -155,9 +155,9 @@ function evaluate(result, betSize, cash, playerHand, dealerHand) {
     fadeOut(element, 3000);
 
     let another = document.querySelector('.hand');
-    fadeIn(another, 7000);
+    
     let stop = document.querySelector('.stop');
-    fadeIn(stop, 7000);
+    
     let report = document.querySelector('.cashReport');
 
     if (result === 'playerBlackjack'){
@@ -207,6 +207,15 @@ function evaluate(result, betSize, cash, playerHand, dealerHand) {
     setTimeout(() => {
         document.querySelector('.cash').textContent = `$${cash.value}`;
     }, 6000);
+
+    setTimeout(() => {
+      if (cash.value === 0) {
+        handleStopClick();
+      } else {
+        fadeIn(stop, 2000);
+        fadeIn(another, 2000);
+      }
+    }, 8000);
 
     function clearTable(playerHand, dealerHand) {
 
@@ -287,7 +296,11 @@ function endGame () {
   let total = document.querySelector('.totalWin');
   let rounds = document.querySelector('.roundsPlayed');
 
-  total.textContent = `You started with $100 and ended with $${cash.value}`;
+  if (cash.value === 0) {
+    total.textContent = `You started with $100 and lost it all`;
+  } else {
+    total.textContent = `You started with $100 and ended with $${cash.value}`;
+  }
 
   if (roundCount.value === 1) {
     rounds.textContent = `You played a total of 1 hand`;
@@ -308,6 +321,11 @@ function bet(cash){
 
       if (betSize >= 1 && betSize <= cash.value && betSize%1 === 0) {
         let div = document.querySelector('.betArea');
+        let betMinus = document.querySelector('.betMinus');
+        
+        betMinus.textContent = `-$${betSize}`;
+        fadeIn(betMinus, 0);
+        fadeOut(betMinus, 1500);
         fadeOut(div, 0);
 
         resolve(betSize);
