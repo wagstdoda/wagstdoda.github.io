@@ -1,482 +1,313 @@
-unshuffledDeck = [
-  { name: 'twoHearts', value: 2 },
-  { name: 'twoDiamonds', value: 2 },
-  { name: 'twoSpades', value: 2 },
-  { name: 'twoClubs', value: 2 },
-  { name: 'threeHearts', value: 3 },
-  { name: 'threeDiamonds', value: 3 },
-  { name: 'threeSpades', value: 3 },
-  { name: 'threeClubs', value: 3 },
-  { name: 'fourHearts', value: 4 },
-  { name: 'fourDiamonds', value: 4 },
-  { name: 'fourSpades', value: 4 },
-  { name: 'fourClubs', value: 4 },
-  { name: 'fiveHearts', value: 5 },
-  { name: 'fiveDiamonds', value: 5 },
-  { name: 'fiveSpades', value: 5 },
-  { name: 'fiveClubs', value: 5 },
-  { name: 'sixHearts', value: 6 },
-  { name: 'sixDiamonds', value: 6 },
-  { name: 'sixSpades', value: 6 },
-  { name: 'sixClubs', value: 6 },
-  { name: 'sevenHearts', value: 7 },
-  { name: 'sevenDiamonds', value: 7 },
-  { name: 'sevenSpades', value: 7 },
-  { name: 'sevenClubs', value: 7 },
-  { name: 'eightHearts', value: 8 },
-  { name: 'eightDiamonds', value: 8 },
-  { name: 'eightSpades', value: 8 },
-  { name: 'eightClubs', value: 8 },
-  { name: 'nineHearts', value: 9 },
-  { name: 'nineDiamonds', value: 9 },
-  { name: 'nineSpades', value: 9 },
-  { name: 'nineClubs', value: 9 },
-  { name: 'tenHearts', value: 10 },
-  { name: 'tenDiamonds', value: 10 },
-  { name: 'tenSpades', value: 10 },
-  { name: 'tenClubs', value: 10 },
-  { name: 'jackHearts', value: 10 },
-  { name: 'jackDiamonds', value: 10 },
-  { name: 'jackSpades', value: 10 },
-  { name: 'jackClubs', value: 10 },
-  { name: 'queenHearts', value: 10 },
-  { name: 'queenDiamonds', value: 10 },
-  { name: 'queenSpades', value: 10 },
-  { name: 'queenClubs', value: 10 },
-  { name: 'kingHearts', value: 10 },
-  { name: 'kingDiamonds', value: 10 },
-  { name: 'kingSpades', value: 10 },
-  { name: 'kingClubs', value: 10 },
-  { name: 'aceHearts', value: 11 },
-  { name: 'aceDiamonds', value: 11 },
-  { name: 'aceSpades', value: 11 },
-  { name: 'aceClubs', value: 11 }
-];
+function getDifficulty () {
+    return new Promise((resolve, reject) => {
+        const short = document.querySelector('.short');
+        const medium = document.querySelector('.medium');
+        const long = document.querySelector('.long');
+        const difficultyBox = document.querySelector('.difficultyBox');
 
-function shuffle(deck) {
-  const shuffledDeck = structuredClone(deck);
-  for (let i = shuffledDeck.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffledDeck[i], shuffledDeck[j]] = [shuffledDeck[j], shuffledDeck[i]];
-  }
-  return shuffledDeck;
-}
+        function handleClick (value) {
+            short.disabled = true;
+            medium.disabled = true;
+            long.disabled = true;
 
-function deal(deck, hand) {
-  let cardDealt = deck.pop();
-  hand.push(cardDealt);
-  return hand;
-}
+            difficultyBox.classList.add('slideDown');
+            setTimeout(() => {
+                difficultyBox.style.display = 'none';
+                difficultyBox.classList.remove('slideDown');
+            }, 2000);
+            resolve(value);
+        }
 
-function count(hand) {
-  function countAces() {
-    let aceCount = 0;
-    hand.forEach(card => {
-      if (card.name.includes('ace')) {
-        aceCount++;
-      }
+        short.onclick = () => handleClick(15);
+        medium.onclick = () => handleClick(30);
+        long.onclick = () => handleClick(60);
     });
-    return aceCount;
-  }
-
-  let handTotal = 0;
-  hand.forEach(card => {
-        handTotal += card.value;
-  });
-
-  for (let i=0; i<countAces(); i++) {
-    if (handTotal > 21) {
-        handTotal -= 10;
-      }
-  }
-
-  return handTotal;
 }
 
-function checkStatus (playerTotal, playerHand, dealerTotal, playerTurn, dealerTurnFinished) {
-  if (playerTurn){
-    if (playerTotal === 21 && playerHand.length === 2) {
-      return 'playerBlackjack';
-    } else if (playerTotal > 21) {
-      return 'lose';
-    } else {
-      return null;
+function fadeIn (delay, ...classNames) {
+    classNames.forEach(className => {
+        let element = document.querySelector(`.${className}`);
+        setTimeout( () => {
+            element.style.display = 'flex';
+            element.classList.add('fadeIn');
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.classList.remove('fadeIn');
+            }, 1000);
+        }, delay);
+    });
+}
+
+function fadeOut (delay, ...classNames) {
+    classNames.forEach(className => {
+        let element = document.querySelector(`.${className}`);
+        setTimeout( () => {
+            element.classList.add('fadeOut');
+            setTimeout(() => {
+                element.style.opacity = '0';
+                element.style.display = 'none';
+                element.classList.remove('fadeOut');
+            }, 1000);
+        }, delay);
+    });
+}
+
+function displaySentence (selectionValues) {
+    let selection = Math.floor(Math.random() * 100);
+
+    while (selectionValues.indexOf(selection) !== -1){
+        selection = Math.floor(Math.random() * 100);
     }
-  } else if (!playerTurn) {
-    //dealers turn
-    if (dealerTurnFinished) {
-      if (dealerTotal > playerTotal && dealerTotal <= 21) {
-        return 'lose';
-      } else if (dealerTotal === playerTotal){
-        return 'push';
-      } else {
-        return 'win';
-      }
-    } else {
-      return null;
-    }
-  }
-}
 
-function fadeIn(item, delay) {
-  item.style.opacity = '0';
-  item.style.transition = 'opacity 1.5s ease';
-  item.style.display = 'inline';
-  setTimeout(() => {
-    item.style.opacity = '1';
-  }, delay);
-}
-
-function fadeOut(item, delay) {
-  item.style.opacity = '1';
-  item.style.transition = 'opacity 1.5s ease';
-  setTimeout(() => {
-    item.style.opacity = '0';
-  }, delay);
-  setTimeout(() => {
-    item.style.display = 'none';
-  }, delay+1500);
-}
-
-function evaluate(result, betSize, cash, playerHand, dealerHand) {
-  let element = null;
-  let cashChange = null;
-
-  if (result !== null) {
-    roundCount.value += 1;
-
-    element = document.querySelector('.hit');
-    fadeOut(element, 0);
-    element = document.querySelector('.stand');
-    fadeOut(element, 0);
-    element = document.querySelector('.pays');
-    fadeOut(element, 3000);
-    element = document.querySelector('.standText');
-    fadeOut(element, 3000);
-
-    let another = document.querySelector('.hand');
+    selectionValues += selection;
     
-    let stop = document.querySelector('.stop');
+    return fetch('sentences.json')
+        .then(response => response.json())
+        .then(sentenceData => {
+            let sentence = sentenceData.sentences[selection];
+            document.querySelector('.displayBox').textContent = `${sentence}`;
+            return sentence;
+        })
+        .catch(error => {
+            console.error(error)
+            return null; 
+        });
+}
+
+function handleKeyPress () {
+    return new Promise((resolve) => {
+        const paperText = document.querySelector('.paperText')
+        const underscore = document.querySelector('.underscore');
+
+        function keyPressed (event) {
+            let char = null;
+            let span = null;
+            let nodes = paperText.childNodes;
+
+            switch (event.key) {
+                case 'Shift':
+                case 'Control':
+                case 'Alt':
+                case 'CapsLock':
+                case 'Tab':
+                case 'Enter':
+                    break;
+                case 'Backspace':
+                    char = 'Backspace';
+                    if (nodes.length > 1) {
+                        paperText.removeChild(nodes[nodes.length - 2]);
+                    }
+                    break;
+                case ' ':
+                    char = '\u00A0';
+                    break;
+                case "'":
+                    event.preventDefault();
+                    char = '\u2019';
+                    break;
+                default:
+                    char = event.key;
+                    break;
+            }
+            if (char !== null) {
+                if (char !== 'Backspace') {
+                    span = document.createElement('span');
+                    span.textContent = char;
+                    paperText.insertBefore(span, underscore);
+                    document.removeEventListener('keydown', keyPressed);
+                    resolve(span);
+                } else {
+                    document.removeEventListener('keydown', keyPressed);
+                    resolve('Backspace');
+                }
+            } else {
+                document.removeEventListener('keydown', keyPressed);
+                resolve('');
+            }
+        };
+    document.addEventListener('keydown', keyPressed);
+    });
+}
+
+function setCursor () {
+    const underscore = document.querySelector('.underscore');
+    const opacityValues = [0,1];
+    let index = 1;
+    setInterval(() => {
+        underscore.style.opacity = opacityValues[index];
+        index = (index + 1) % 2;
+    }, 700);
+}
+
+async function test () {
+    const displayBox = document.querySelector('.displayBox');
+    const paperText = document.querySelector('.paperText');
+
+    fadeIn(2000, 'difficultyBox');
+    let timeLimit = await getDifficulty();
     
-    let report = document.querySelector('.cashReport');
+    const time = document.querySelector('.count');
+    time.textContent = `${timeLimit}`;
+    fadeIn(2000, 'clock');
+    fadeIn(2000, 'count');
 
-    if (result === 'playerBlackjack'){
-      element = document.querySelector('.blackJack');
-      cashChange = Math.round(betSize*3/2 + betSize);
+    setCursor();
 
-      setTimeout(() => {
-        fadeIn(element, 1000);
-        report.style.color = '#2bb021';
-        report.textContent = `+$${cashChange}`;
-        fadeIn(report, 1000);
-      }, 5000);
-    } else if (result === 'win'){
-      element = document.querySelector('.youWin');
-      cashChange = betSize*2;
-
-      setTimeout(() => {
-        fadeIn(element, 1000);
-        report.style.color = '#2bb021';
-        report.textContent = `+$${cashChange}`;
-        fadeIn(report, 1000);
-      }, 5000);
-    } else if (result === 'lose'){
-      element = document.querySelector('.youLose');
-      cashChange = 0;
-
-      setTimeout(() => {
-        fadeIn(element, 1000);
-        report.style.color = '#cf364f';
-        report.textContent = `+$${cashChange}`;
-        fadeIn(report, 1000);
-      }, 5000);
-    } else if (result === 'push') {
-      element = document.querySelector('.push');
-      cashChange = betSize;
-
-      setTimeout(() => {
-        fadeIn(element, 1000);
-        report.style.color = 'black';
-        report.textContent = `+$${cashChange}`;
-        fadeIn(report, 1000);
-      }, 5000);
-    }
-
-    cash.value += cashChange;
-
+    const paper = document.querySelector('.paperBox');
+    setTimeout(() => {paper.classList.add('slideUp')}, 2000);
     setTimeout(() => {
-        document.querySelector('.cash').textContent = `$${cash.value}`;
-    }, 6000);
+        paper.style.transform = 'translateY(-100%)';
+        paper.classList.remove('slideUp')
+    }, 4000);
 
-    setTimeout(() => {
-      if (cash.value === 0) {
-        handleStopClick();
-      } else {
-        fadeIn(stop, 2000);
-        fadeIn(another, 2000);
-      }
-    }, 8000);
+    let selectionValues = [];
+    let sentence = await displaySentence(selectionValues);
+    let sentenceArray = sentence.split('');
+    let typed = [];
+    let firstKeyPressed = false;
+    let typedCount = 0;
+    let timeLeft = true;
 
-    function clearTable(playerHand, dealerHand) {
+    while (timeLeft) {
+        let span = await handleKeyPress();
 
-      another.style.display = 'none';
-      stop.style.display = 'none';
+        if (!firstKeyPressed) {
+            let timer = setInterval(() => {
+                let currentTime = Number(time.textContent);
+                currentTime -= 1;
+                time.textContent = currentTime;
+                if (currentTime === 0) {
+                    time.style.color = 'red';
+                    timeLeft = false;
+                    clearInterval(timer);
+                }
+            }, 1000);
 
-      for(let i=0; i<playerHand.length; i++){
-        let playerCard = document.querySelector(`#${playerHand[i].name}`);
-        fadeOut(playerCard, 0);
-      }
-
-      for(let i=0; i<dealerHand.length; i++){
-        let dealerCard = document.querySelector(`#${dealerHand[i].name}`);
-        fadeOut(dealerCard, 0);
-      }
-
-      setTimeout(() => {
-        //move player cards and dealer cards back to original spot
-
-        for(let i=0; i<playerHand.length; i++){
-          let img = document.querySelector(`#${playerHand[i].name}`);
-          document.querySelector(`body`).appendChild(img);
+            firstKeyPressed = true;
         }
 
-        for(let i=0; i<dealerHand.length; i++){
-          let img = document.querySelector(`#${dealerHand[i].name}`);
-          document.querySelector(`body`).appendChild(img);
+        if (span && span !== 'Backspace') {
+            typed.push(span);
+        }
+        if (span === 'Backspace') {
+            typed.pop();
         }
 
-      }, 2000);
+        if (typed.length > 0) {
+            for (let i=0;i < typed.length; i++) {
+                if (typed[i].textContent === sentenceArray[i]) {
+                    typed[i].style.color = 'green';
+                } else {
+                    typed[i].style.color = 'red';
+                }
+            }
+        }
 
-      fadeOut(document.querySelector('#hidden'), 0);
-      fadeOut(document.querySelector('.youWin'), 0);
-      fadeOut(document.querySelector('.youLose'), 0);
-      fadeOut(document.querySelector('.blackJack'), 0);
-      fadeOut(document.querySelector('.push'), 0);
-      fadeOut(report, 0);
+        if (typed.length === sentenceArray.length) {
+            let numOfCorrect = 0;
 
+            for(let i=0;i<sentenceArray.length; i++) {
+                if (typed[i].textContent === '\u00A0' && sentenceArray[i] === ' ') {
+                    numOfCorrect++;
+                }
+                if (typed[i].textContent === sentenceArray[i]) {
+                    numOfCorrect++;
+                }
+            }
+
+            if (numOfCorrect === sentenceArray.length) {
+                typedCount += sentenceArray.filter(char => char !== ' ').length;
+
+                displayBox.textContent = '';
+                sentence = await displaySentence(selectionValues);
+                sentenceArray = sentence.split('');
+                numOfCorrect = 0;
+                typed = [];
+                paperText.innerHTML = '<span class="underscore">_</span>';
+                setCursor();
+            }
+        }
     }
 
-    function handleAnotherClick () {
-      //Another hand
-        
-      clearTable(playerHand, dealerHand);
+    let progress = 0;
 
-      setTimeout(() => {
-        fadeIn(document.querySelector('.pays'), 1000);
-        fadeIn(document.querySelector('.standText'), 1000);
-
-        document.querySelector('.lowerBetText').textContent = `(1-${cash.value})`;
-        fadeIn(document.querySelector('.betArea'), 100);
-      }, 3000);
-
-      main(cash, roundCount);
+    for(let i=0;i<typed.length; i++) {
+        if (typed[i].textContent === sentenceArray[i] && typed[i].textContent !== '\u00A0') {
+            progress++;
+        }
     }
 
-    function handleStopClick() {
-      //Cash out
-      
-      clearTable(playerHand, dealerHand);
+    typedCount += progress;
+    let wordsPerMinute = (typedCount / 4.27) * (60 / timeLimit);
+    wordsPerMinute = Math.trunc(wordsPerMinute*10) / 10;
 
-      setTimeout(() => {
-        endGame();
-      }, 2000);
-    }
+    paper.classList.add('slideDownPaper');
+    setTimeout(() => {
+        paper.style.transform = 'translateY(100%)';
+        paper.classList.remove('slideDown');
+    }, 2000);
+
+    fadeOut(0, 'countBox', 'displayBox');
+    document.querySelector('.container').style.display = 'none';
+
+    displayResults(wordsPerMinute);
+}
+
+function displayResults (wordsPerMinute) {
+    let wpmText = document.querySelector('.wpm');
+    let expBox = document.querySelector('.expBox');
+    let typedAt = document.querySelector('.youTypedAt');
+
+    typedAt.style.display = 'block';
+    expBox.style.display = 'flex';
+    wpmText.style.display = 'block';
+
+    wpmText.textContent = `${wordsPerMinute} WPM!`;
+    wpmText.classList.add('goldenText');
+
 
     setTimeout(() => {
-      another.onclick = () => handleAnotherClick();
+        typedAt.style.opacity = '1';
+    }, 3000);
+    setTimeout(() => {
+        wpmText.style.opacity = '1';
+    }, 5000);
+    setTimeout(() => {
+        expBox.style.opacity = '1';
     }, 7000);
+    
+    let firstSection = document.querySelector('.section1Background');
+    let secondSection = document.querySelector('.section2Background');
+    let thirdSection = document.querySelector('.section3Background');
+    let fourthSection = document.querySelector('.section4Background');
 
     setTimeout(() => {
-      stop.onclick = () => handleStopClick();
-    }, 7000);
-  }
+        switch (true) {
+            case wordsPerMinute<40:
+                firstSection.classList.add('animateFill');
+                break;
+            case wordsPerMinute<60:
+                firstSection.classList.add('animateFill');
+                setTimeout(() => {secondSection.classList.add('animateFill');}, 1000);
+                break;
+            case wordsPerMinute<80:
+                firstSection.classList.add('animateFill');
+                setTimeout(() => {secondSection.classList.add('animateFill');}, 1000);
+                setTimeout(() => {thirdSection.classList.add('animateFill');}, 2000);
+                break;
+            default:
+                firstSection.classList.add('animateFill');
+                setTimeout(() => {secondSection.classList.add('animateFill');}, 1000);
+                setTimeout(() => {thirdSection.classList.add('animateFill');}, 2000);
+                setTimeout(() => {fourthSection.classList.add('animateFill');}, 3000);
+                break; 
+        }
+    }, 9000);
 }
 
-function endGame () {
-  let total = document.querySelector('.totalWin');
-  let rounds = document.querySelector('.roundsPlayed');
-
-  if (cash.value === 0) {
-    total.textContent = `You started with $100 and lost it all`;
-  } else {
-    total.textContent = `You started with $100 and ended with $${cash.value}`;
-  }
-
-  if (roundCount.value === 1) {
-    rounds.textContent = `You played a total of 1 hand`;
-  } else {
-    rounds.textContent = `You played a total of ${roundCount.value} hands`;
-  }
-
-  fadeIn(total, 1500);
-  fadeIn(rounds, 1500);
-}
-
-function bet(cash){
-  return new Promise((resolve, reject) => {
-
-    let inputButton = document.querySelector('.submitInput');
-    function handleBetClick () {
-      let betSize = Number(document.querySelector('.betInput').value.trim());
-
-      if (betSize >= 1 && betSize <= cash.value && betSize%1 === 0) {
-        let div = document.querySelector('.betArea');
-        let betMinus = document.querySelector('.betMinus');
-        
-        betMinus.textContent = `-$${betSize}`;
-        fadeIn(betMinus, 0);
-        fadeOut(betMinus, 1500);
-        fadeOut(div, 0);
-
-        resolve(betSize);
-      } else {
-        let text = document.querySelector('.lowerBetText');
-        text.classList.add('flashText');
-
-        setTimeout(() => {
-          text.classList.remove('flashText');
-        }, 2000);
-      }
-    }
-    inputButton.onclick = () => handleBetClick();
-  });
-}
-
-function handleHitClick (playerHand, deck, playerTotal, playerTurn, status, dealerTotal, dealerTurnFinished, result, betSize, cash, dealerHand) {
-  //add another card to hand
-  playerHand = deal(deck, playerHand);
-  img = document.querySelector(`#${playerHand[playerHand.length-1].name}`);
-  document.querySelector(`.playerCards`).appendChild(img);
-  fadeIn(img, 100);
-
-  //recount player hand
-  playerTotal = count(playerHand);
-
-  // Auto-stand if player hits 21
-  if (playerTotal === 21) {
-    handleStandClick(playerHand, deck, playerTotal, playerTurn, status, dealerTotal, dealerTurnFinished, result, betSize, cash, dealerHand);
-    return;
-  }
-
-  //check status
-  status = checkStatus(playerTotal, playerHand, dealerTotal, playerTurn, dealerTurnFinished);
-
-  if (status === 'playerBlackjack' || status === 'lose') {
-    result = status;
-  }
-  evaluate(result, betSize, cash, playerHand, dealerHand);
-}
-
-function handleStandClick (playerHand, deck, playerTotal, playerTurn, status, dealerTotal, dealerTurnFinished, result, betSize, cash, dealerHand) {
-  // dealers turn
-  playerTurn = false;
-  document.querySelector('#hidden').style.display = 'none';
-
-  img = document.querySelector(`#${dealerHand[0].name}`);
-  document.querySelector(`.dealerCards`).appendChild(img);
-  fadeIn(img, 100);
-
-  let counter = 1;
-  while (count(dealerHand) < 17) {
-    dealerHand = deal(deck, dealerHand);
-    img = document.querySelector(`#${dealerHand[dealerHand.length-1].name}`);
-    document.querySelector(`.dealerCards`).appendChild(img);
-    fadeIn(img, 1000*counter);
-
-    dealerTotal = count(dealerHand);
-    counter += 1;
-  }
-  playerTotal = count(playerHand);
-  dealerTurnFinished = true;
-  status = checkStatus(playerTotal, playerHand, dealerTotal, playerTurn, dealerTurnFinished);
-  result = status;
-  evaluate(result, betSize, cash, playerHand, dealerHand);
-}
-
-function onDealClick() {
-  handleDealClick(betSize, cash);
-}
-
-function handleDealClick(betSize, cash) {
-
-  let dealButton = document.querySelector('.deal');
-  dealButton.style.display = 'none';
-
-  //round
-  let status = null;
-  let result = null;
-  let playerTurn = true;
-  let dealerTurnFinished = false;
-  let playerHand = [];
-  let dealerHand = [];
-  let deck = shuffle(unshuffledDeck);
-
-  //initial deal
-
-  //visible 1st card
-  playerHand = deal(deck, playerHand);
-  let img = document.querySelector(`#${playerHand[playerHand.length-1].name}`);
-  document.querySelector(`.playerCards`).appendChild(img);
-  fadeIn(img, 1000);
-
-  //hidden 2nd card
-  dealerHand = deal(deck, dealerHand);
-  img = document.querySelector('#hidden');
-  document.querySelector(`.dealerCards`).appendChild(img);
-  fadeIn(img, 2000);
-
-  //visible 3rd card
-  playerHand = deal(deck, playerHand);
-  img = document.querySelector(`#${playerHand[playerHand.length-1].name}`);
-  document.querySelector(`.playerCards`).appendChild(img);
-  fadeIn(img, 3000);
-
-  //visible 4th card
-  dealerHand = deal(deck, dealerHand);
-  img = document.querySelector(`#${dealerHand[dealerHand.length-1].name}`);
-  document.querySelector(`.dealerCards`).appendChild(img);
-  fadeIn(img, 4000);
-
-  //count players initial hand
-  let playerTotal = count(playerHand);
-  let dealerTotal = count(dealerHand);
-
-  //check status (player's turn)
-  status = checkStatus(playerTotal, playerHand, dealerTotal, playerTurn, dealerTurnFinished);
-
-  if (status === 'playerBlackjack') {
-    result = status;
-  } else if (status === null) {
-
-    //hit and stand buttons
-    let hitButton = document.querySelector('.hit');
-    let standButton = document.querySelector('.stand');
-
-    fadeIn(standButton, 4000);
-    fadeIn(hitButton, 4000);
-
-    hitButton.onclick = () => handleHitClick(playerHand, deck, playerTotal, playerTurn, status, dealerTotal, dealerTurnFinished, result, betSize, cash, dealerHand);
-    standButton.onclick = () => handleStandClick(playerHand, deck, playerTotal, playerTurn, status, dealerTotal, dealerTurnFinished, result, betSize, cash, dealerHand);
-  }
-  evaluate(result, betSize, cash, playerHand, dealerHand);
-}
-
-async function main (cash, roundCount){
-  try {
-    let betSize = await bet(cash);
-    cash.value -= betSize;
-    document.querySelector('.cash').textContent = `$${cash.value}`;
-
-    let dealButton = document.querySelector('.deal');
-    fadeIn(dealButton, 1500);
-
-    dealButton.onclick = () => handleDealClick(betSize, cash);
-
-  } catch (error) {
-    alert("If you're seeing this, something has gone terribly wrong.");
-  }
-}
-
-let cash = { value: 100 };
-let roundCount = { value: 0};
-main(cash, roundCount);
+const start = document.querySelector('.start');
+start.onclick = () => {
+    start.disabled = true;
+    document.querySelector('.ruleBox').classList.add('slideDown');
+    test();
+};

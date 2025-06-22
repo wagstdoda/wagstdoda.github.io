@@ -3,313 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
-    />
-    <title>BlackJack</title>
-  </head>
+    <title>Typing Speed Test</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
   <body>
-    <img class="table" src="./Images/Tabletop.png" />
-
-    <img
-      class="card"
-      id="twoHearts"
-      src="./Images/Playing Cards/twoHearts.png"
-    />
-    <img
-      class="card"
-      id="twoDiamonds"
-      src="./Images/Playing Cards/twoDiamonds.png"
-    />
-    <img
-      class="card"
-      id="twoSpades"
-      src="./Images/Playing Cards/twoSpades.png"
-    />
-    <img class="card" id="twoClubs" src="./Images/Playing Cards/twoClubs.png" />
-
-    <img
-      class="card"
-      id="threeHearts"
-      src="./Images/Playing Cards/threeHearts.png"
-    />
-    <img
-      class="card"
-      id="threeDiamonds"
-      src="./Images/Playing Cards/threeDiamonds.png"
-    />
-    <img
-      class="card"
-      id="threeSpades"
-      src="./Images/Playing Cards/threeSpades.png"
-    />
-    <img
-      class="card"
-      id="threeClubs"
-      src="./Images/Playing Cards/threeClubs.png"
-    />
-
-    <img
-      class="card"
-      id="fourHearts"
-      src="./Images/Playing Cards/fourHearts.png"
-    />
-    <img
-      class="card"
-      id="fourDiamonds"
-      src="./Images/Playing Cards/fourDiamonds.png"
-    />
-    <img
-      class="card"
-      id="fourSpades"
-      src="./Images/Playing Cards/fourSpades.png"
-    />
-    <img
-      class="card"
-      id="fourClubs"
-      src="./Images/Playing Cards/fourClubs.png"
-    />
-
-    <img
-      class="card"
-      id="fiveHearts"
-      src="./Images/Playing Cards/fiveHearts.png"
-    />
-    <img
-      class="card"
-      id="fiveDiamonds"
-      src="./Images/Playing Cards/fiveDiamonds.png"
-    />
-    <img
-      class="card"
-      id="fiveSpades"
-      src="./Images/Playing Cards/fiveSpades.png"
-    />
-    <img
-      class="card"
-      id="fiveClubs"
-      src="./Images/Playing Cards/fiveClubs.png"
-    />
-
-    <img
-      class="card"
-      id="sixHearts"
-      src="./Images/Playing Cards/sixHearts.png"
-    />
-    <img
-      class="card"
-      id="sixDiamonds"
-      src="./Images/Playing Cards/sixDiamonds.png"
-    />
-    <img
-      class="card"
-      id="sixSpades"
-      src="./Images/Playing Cards/sixSpades.png"
-    />
-    <img class="card" id="sixClubs" src="./Images/Playing Cards/sixClubs.png" />
-
-    <img
-      class="card"
-      id="sevenHearts"
-      src="./Images/Playing Cards/sevenHearts.png"
-    />
-    <img
-      class="card"
-      id="sevenDiamonds"
-      src="./Images/Playing Cards/sevenDiamonds.png"
-    />
-    <img
-      class="card"
-      id="sevenSpades"
-      src="./Images/Playing Cards/sevenSpades.png"
-    />
-    <img
-      class="card"
-      id="sevenClubs"
-      src="./Images/Playing Cards/sevenClubs.png"
-    />
-
-    <img
-      class="card"
-      id="eightHearts"
-      src="./Images/Playing Cards/eightHearts.png"
-    />
-    <img
-      class="card"
-      id="eightDiamonds"
-      src="./Images/Playing Cards/eightDiamonds.png"
-    />
-    <img
-      class="card"
-      id="eightSpades"
-      src="./Images/Playing Cards/eightSpades.png"
-    />
-    <img
-      class="card"
-      id="eightClubs"
-      src="./Images/Playing Cards/eightClubs.png"
-    />
-
-    <img
-      class="card"
-      id="nineHearts"
-      src="./Images/Playing Cards/nineHearts.png"
-    />
-    <img
-      class="card"
-      id="nineDiamonds"
-      src="./Images/Playing Cards/nineDiamonds.png"
-    />
-    <img
-      class="card"
-      id="nineSpades"
-      src="./Images/Playing Cards/nineSpades.png"
-    />
-    <img
-      class="card"
-      id="nineClubs"
-      src="./Images/Playing Cards/nineClubs.png"
-    />
-
-    <img
-      class="card"
-      id="tenHearts"
-      src="./Images/Playing Cards/tenHearts.png"
-    />
-    <img
-      class="card"
-      id="tenDiamonds"
-      src="./Images/Playing Cards/tenDiamonds.png"
-    />
-    <img
-      class="card"
-      id="tenSpades"
-      src="./Images/Playing Cards/tenSpades.png"
-    />
-    <img class="card" id="tenClubs" src="./Images/Playing Cards/tenClubs.png" />
-
-    <img
-      class="card"
-      id="jackHearts"
-      src="./Images/Playing Cards/jackHearts.png"
-    />
-    <img
-      class="card"
-      id="jackDiamonds"
-      src="./Images/Playing Cards/jackDiamonds.png"
-    />
-    <img
-      class="card"
-      id="jackSpades"
-      src="./Images/Playing Cards/jackSpades.png"
-    />
-    <img
-      class="card"
-      id="jackClubs"
-      src="./Images/Playing Cards/jackClubs.png"
-    />
-
-    <img
-      class="card"
-      id="queenHearts"
-      src="./Images/Playing Cards/queenHearts.png"
-    />
-    <img
-      class="card"
-      id="queenDiamonds"
-      src="./Images/Playing Cards/queenDiamonds.png"
-    />
-    <img
-      class="card"
-      id="queenSpades"
-      src="./Images/Playing Cards/queenSpades.png"
-    />
-    <img
-      class="card"
-      id="queenClubs"
-      src="./Images/Playing Cards/queenClubs.png"
-    />
-
-    <img
-      class="card"
-      id="kingHearts"
-      src="./Images/Playing Cards/kingHearts.png"
-    />
-    <img
-      class="card"
-      id="kingDiamonds"
-      src="./Images/Playing Cards/kingDiamonds.png"
-    />
-    <img
-      class="card"
-      id="kingSpades"
-      src="./Images/Playing Cards/kingSpades.png"
-    />
-    <img
-      class="card"
-      id="kingClubs"
-      src="./Images/Playing Cards/kingClubs.png"
-    />
-
-    <img
-      class="card"
-      id="aceHearts"
-      src="./Images/Playing Cards/aceHearts.png"
-    />
-    <img
-      class="card"
-      id="aceDiamonds"
-      src="./Images/Playing Cards/aceDiamonds.png"
-    />
-    <img
-      class="card"
-      id="aceSpades"
-      src="./Images/Playing Cards/aceSpades.png"
-    />
-    <img class="card" id="aceClubs" src="./Images/Playing Cards/aceClubs.png" />
-    <img class="card" id="hidden" src="./Images/Playing Cards/Hidden.png" />
-
-    <div class="betDiv">
-      <div class="betArea">
-        <div class="upperBetTextArea">
-          <p class="upperBetText">Place Your Bet</p>
-        </div>
-        <div class="lowerBetTextArea">
-          <p class="lowerBetText">(1-100)</p>
-        </div>
-        <div class="inputArea">
-          <input class="betInput" id="betInput" type="text" placeholder="0" />
-          <button class="submitInput">Bet</button>
-        </div>
+    <div class="container">
+    <div class="countBox">
+      <img src="Images/clock.svg" alt="A Timer" title="Countdown" class="clock">
+      <p class="count">0</p>
+    </div>
+    <div class="displayBox"></div>
+    </div>
+    <div class="difficultyBox">
+      <h1 class="choose">Choose your difficulty</h1>
+      <div class="selectionBox">
+        <button class="short">
+          15 Seconds
+        <img src="/Images/oneStar.png" alt="One Star" class="rating">
+      </button>
+      <button class="medium">
+        30 Seconds
+        <img src="/Images/twoStar.png" alt="Two Stars" class="rating">
+      </button>
+      <button class="long">
+        60 Seconds
+        <img src="/Images/threeStar.png" alt="Three Stars" class="rating">
+      </button>
       </div>
     </div>
-    <div class="upperText">
-      <p class="roundsPlayed"></p>
-      <p class="pays">BlackJack Pays 3 To 2</p>
-      <p class="blackJack">BlackJack!</p>
-      <p class="youWin">You Won</p>
-      <p class="youLose">You Lose</p>
-      <p class="push">Push</p>
+    <div class="ruleBox">
+      <p class="rules">
+        Find out what your WPM is with this typing test. Simply type along with
+        the onscreen prompt as quickly as you can, but be careful not to make
+        any mistakes! Don't worry, the timer doesn't start until you do.
+      </p>
+      <button class="start">Let's go!</button>
     </div>
-    <div class="lowerText">
-      <p class="totalWin"></p>
-      <p class="cashReport"></p>
-      <p class="standText">Dealer must stand on 17 and must draw to 16</p>
+    <div class="paperBox">
+      <div class="paperText"><span class="underscore">_</span></div>
     </div>
-    <div class="dealerCards"></div>
-    <div class="playerCards"></div>
-    <div class="buttonArea">
-      <p class="cash">$100</p>
-      <p class="betMinus"></p>
-      <div class="dealArea">
-        <button class="deal">Deal</button>
-        <button class="hand">Next Hand</button>
-        <button class="stop">Cash Out</button>
+    <div class="youTypedAt">You typed at...</div>
+    <div class="wpm"></div>
+    <div class="expBox">
+      <div class="expText">
+        <div class="beginner">Beginner</div>
+        <div class="intermediate">Intermediate</div>
+        <div class="advanced">Advanced</div>
+        <div class="expert">Expert</div>
       </div>
-      <button class="hit">Hit</button>
-      <button class="stand">Stand</button>
+      <div class="experienceBar">
+      <div class="section1">
+        <div class="section1Background"></div>
+      </div>
+      <div class="section2">
+        <div class="section2Background"></div>
+      </div>
+      <div class="section3">
+        <div class="section3Background"></div>
+      </div>
+      <div class="section4">
+        <div class="section4Background"></div>
+      </div>
+    </div>
     </div>
 
     <script src="script.js"></script>
