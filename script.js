@@ -59,7 +59,7 @@ function displaySentence (selectionValues) {
         selection = Math.floor(Math.random() * 100);
     }
 
-    selectionValues += selection;
+    selectionValues.push(selection);
     
     return fetch('sentences.json')
         .then(response => response.json())
