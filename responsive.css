@@ -118,6 +118,10 @@ body {
 	text-align: center;
 	margin: 10px 0;
 }
+.border-container {
+	display: flex;
+	justify-content: center;
+}
 #main p {
 	text-align: center;
 	font-size: 1.4em;
