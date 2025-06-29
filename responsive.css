@@ -20,6 +20,7 @@ body {
 	font-family: Helvetica, sans-serif;
 }
 #head {
+	background-image: url('Images/texture.png');
 	background-color: #EDEDED;
 	text-align: center;
 }
@@ -294,6 +295,7 @@ label {
 	font-weight: bold;
 }
 #foot {
+	background-image: url('Images/texture.png');
 	border: 10px solid #cccccc;
 	border-top: none;
 	display: flex;
