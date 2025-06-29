@@ -71,7 +71,7 @@ body {
 	text-decoration: underline;
 }
 #left, #right {
-	background-image: url('../Images/chocolate.png');
+	background-image: url('Images/chocolate.png');
 	background-size: contain;
 }
 #left {
