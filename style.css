@@ -1,154 +1,257 @@
-* {
-    margin: 0;
+body, html {
     padding: 0;
-    box-sizing: border-box;
+    margin: 0;
 }
-html, body {
-    height: 100%;
-}
-body {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: grid;
-    grid-template-columns: repeat(20, 5vw);
-    grid-template-rows: repeat(10, 10vh);
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-}
-#weather {
-    background-color: #a1a1a1;
-    grid-area: 1/1/3/4;
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
-    grid-template-rows: repeat(2, 50%);
-    border-right: 5px solid black;
-    border-bottom: 5px solid black;
-}
-#day {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    grid-area: 1/1/2/3;
-    border-bottom: 2px solid black;
-}
-#dayName {
-    font-size: 2.5rem;
-    text-align: center;
-}
-#date {
-    font-size: 1.2rem;
-    text-align: center;
-}
-#tempContainer {
+
+div {
+    position:absolute;
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-right: 2px solid black;
 }
-#temperature {
-    grid-area: 2/1/3/2;
-    text-align: center;
-    font-size: 2rem;
+
+p, button {
+    font-family: "Abril Fatface", sans-serif;
 }
-#feelsLike {
-    grid-area: 2/1/3/2;
-    font-size: .8rem;
+
+p {
+    font-size: clamp(1rem, 4vw, 3rem);
 }
-#icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    grid-area: 2/2/3/3;
-}
-#img {
-    position: relative;
-    top: -.3rem;
-}
-#description {
-    position: relative;
-    top: -1.5rem;
-}
-#time {
-    grid-area: 1/10/2/12;
-    background-color: #a1a1a1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-size: 2rem;
-    border-left: 5px solid black;
-    border-bottom: 5px solid black;
-    border-right: 5px solid black;
-}
-#info {
-    display: flex;
-    justify-content: center;
-    background-color: #a1a1a1;
-    grid-area: 10/1/11/2;
-    border-top: 5px solid black;
-    border-right: 5px solid black;
-}
-#info:hover {
-    border-top: 5px solid #8bb7f0;
-    border-right: 5px solid #8bb7f0;
-    cursor: pointer;
-}
-#info img {
-    width: 55%;
-}
-#imgInfo {
+
+.youWin, .youLose, .push , .blackJack, .cashReport{
     display: none;
-    height: fit-content;
-    flex-direction: column;
-    align-items: center;
-    background-color: black;
-    grid-area: 3/6/8/16;
-    border-radius: 80px;
-    opacity: 0.7;
+    font-size: clamp(3rem,3vw,4rem);
 }
-#imgText {
-    color: white;
-    margin: 50px;
-    line-height: 2rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center;
+
+.roundsPlayed, .totalWin {
+    display:none;
+    font-size:clamp(1rem, 2.5vw, 3rem);
 }
-#exit {
-    color: white;
-    font-size: 2rem;
-    padding: .5rem 1rem;
-    border: 2px solid white;
-    border-radius: 10px;
-    margin-bottom: 50px;
+
+.youWin {
+    color: #2bb021
 }
-#exit:hover {
-    background-color: gray;
-    cursor: pointer;
+
+.youLose, .betMinus {
+    color: #cf364f
 }
-#links {
-    background-color: #a1a1a1;
-    grid-area: 10/8/11/14;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-top: 5px solid black;
-    border-left: 5px solid black;
-    border-right: 5px solid black;
+
+@keyframes colorChange {
+  0% {
+    color: #2bb021;
+  }
+  50% {
+    color: #cf364f;
+  }
+  100% {
+    color: black;
+  }
 }
-#links div img {
+
+.blackJack {
+  animation: colorChange 1s infinite alternate;
+}
+
+.table {
+    position: absolute;
+    padding: 0;
+    top: 0;
+    left: 0;
     height: 100%;
+    width: 100%;
+    z-index: 0;
 }
-#links div {
-    height: 75%;
-    width: fit-content;
-    background-color: antiquewhite;
+
+.card {
+    position: relative;
+    height: 100%;
+    display: none;
+    padding: 0px 1rem;
+    margin-bottom: 1rem;
+}
+
+.betDiv {
+    height: 15vw;
+    min-height: 10rem;
+    top: 0;
+    z-index: 2;
+}
+
+.upperBetTextArea {
+    height: 30%;
+    top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upperBetText, .lowerBetText {
+    font-size: clamp(2rem, 3vw, 4rem);
+}
+
+.lowerBetTextArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    top: 35%;
+}
+
+@keyframes flashRed {
+  0%   { color: initial; }
+  50%  { color: red; }
+  100% { color: initial; }
+}
+
+.flashText {
+  animation: flashRed 2s ease-in-out;
+}
+
+.inputArea {
+    display: flex;
+    justify-content: space-evenly;
+    height: 25%;
+    top: 65%;
+}
+
+.betInput {
+    text-align: center;
+    font-size: 2rem;
     border-radius: 1rem;
-    border: 2px solid black;
-    transition: height .1s linear;
+    border: 0;
+    width: 35%;
+    z-index: 2;
 }
-#links div:hover {
-    height: 90%;
+
+input:focus {
+  outline: none;
+}
+
+.submitInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    background-color: #ebdb34;
+    z-index: 2;
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.submitInput:hover {
+    background-color: #c9bb26;
+}
+
+.betArea {
+    background-color: #bfbdb8;
+    border-radius: 0 0 1rem 1rem;
+    height: 100%;
+    width: clamp(15rem, 25vw, 30rem);
+}
+
+.playerCards {
+    display: flex;
+    flex-wrap: wrap;
+    top: 55%;
+    height: clamp(7rem, 20vw, 10rem);
+}
+
+.dealerCards {
+    display: flex;
+    flex-wrap: wrap;
+    top: 10%;
+    height: clamp(7rem, 20vw, 10rem);
+}
+
+.buttonArea {
+    display: flex;
+    justify-content: space-between;
+    bottom: 5%;
+    height: clamp(3rem, 10vw, 6rem);;
+}
+
+.dealArea {
+    height: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.deal, .hit, .stand {
+    font-size: clamp(1rem, 5vw, 3rem);
+}
+
+.hand, .stop {
+    font-size: clamp(1rem, 2vw, 1.9rem);
+    margin: 0 1rem 0 1rem;
+}
+
+button {
+    width: clamp(6rem, 10vw, 10rem);
+    font-size: 2.5rem;
+    border-radius: 1rem;
+    border-width: 0px;
+    color: black;
+}
+
+.cash {
+    font-size: clamp(2rem, 5vw, 5rem);
+    margin: 0 0 0 2rem;
+    color: #ebdb34;
+    align-self: center;
+}
+
+.deal {
+    background-color: #ebdb34;
+    display: none;
+    z-index: 3;
+    margin-right: 2rem;
+}
+
+.deal:hover {
+    background-color: #c9bb26;
+}
+
+.upperText {
+    display: flex;
+    align-items: center;
+    top:39%;
+    height: 5rem;
+}
+
+.lowerText {
+    display: flex;
+    align-items: center;
+    top: 45%;
+    height: 5rem;
+}
+
+.cashReport, .betMinus {
+    display: none;
+}
+
+.betMinus {
+    font-size: clamp(2rem, 5vw, 5rem);
+    margin: 0 auto 0 0;
+    align-self: center;
+}
+
+.hit, .hand {
+    background-color: #2bb021;
+    display: none;
+    z-index: 1;
+}
+
+.hit:hover, .hand:hover{
+    background-color: #25803d;
+}
+
+.stand, .stop {
+    background-color: #cf364f;
+    display: none;
+    margin: 0 2rem 0 0;
+    z-index: 1;
+}
+
+
+.stand:hover , .stop:hover{
+    background-color: #8c112d;
 }
